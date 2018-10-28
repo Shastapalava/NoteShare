@@ -50,7 +50,7 @@ Django uses a different Model-View-Controller architecture than most. Here's the
 ```python
 from django.db import models
 class Item(models.Model):
-	title = models.Model.CharField(max_length=200)
+	title = models.CharField(max_length=200)
 	description = models.TextField()
 	amount = models.IntegerField()
 ```
