@@ -37,7 +37,7 @@ IEEE. IEEE Std 830-1998 IEEE Recommended Practice for Software Requirements Spec
 
 As  a visual aid, a use-case diagram can help to understand any system.  Below, we have a full use-case diagram that shows the functionalities of  our proposed system. Here, we visualize how users will interact with  NoteShare. We also introduce smaller diagrams where more detail is  needed in section 3.
 
-![](../../../CSC%20322/NoteShare/documentation/images/image1.jpg)
+![](images/image1.jpg)
 
 ### 2.2  Assumptions and Dependencies
 
@@ -55,7 +55,7 @@ GU  are the most limited users. These are users who are not registered yet  or c
 
 #### Use case 1: Read documents/complains
 
-![](../../../CSC%20322/NoteShare/documentation/images/image3.jpg)
+![](images/image3.jpg)
 
 As  we can see all users are allowed to view and read documents and  complains.  It is not required to be registered in order to do that. 
 
@@ -65,7 +65,7 @@ However,  if the guests want, not only to view the content of file sharing  syst
 
 #### Use case 2: Apply to be OU
 
-![](../../../CSC%20322/NoteShare/documentation/images/image2.jpg)
+![](images/image2.jpg)
 
 After  the user applies to be an OU, his request is granted automatically,  provided the user has notes to share to the class. Otherwise, the SU can  grant access on a case by case basis. Also, if any rules of conduct as  maintained by the school are violated, a user can be banned by SU. 
 
@@ -73,13 +73,13 @@ After  the user successfully registered as an OU, they can all GU actions that  
 
 #### Use case 3: Create/Modify Documents
 
-![](../../../CSC%20322/NoteShare/documentation/images/image5.jpg)
+![](images/image5.jpg)
 
 Finally,  one user has to maintain and moderate the system. This is what SU are  for. They update membership, address taboos, unlock any locked document  as necessary, and  process complaints about OU's on top of all  privileges reserved for OUs.
 
 #### Use case 4: Complain 
 
-![](../../../CSC%20322/NoteShare/documentation/images/image4.jpg)
+![](images/image4.jpg)
 
 Complains  can be created by OUs and SUs(need to be logged in). However, only SUs  can process them. All users are able to read complains without logging  in. 
 
