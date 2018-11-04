@@ -85,3 +85,6 @@ vaccinations = models.ManyToManyField('Vaccine',blank=True)
 - if you want to access all elements of the attribute in question, say the number of vaccinations a pet has, you can use `Pet.vaccinations.all()`
 - access the model attributes by dotting them after the model name egoogle.com. `Pet.name`. no parentheses needed. Not a member function. 
 - you can query the model with `Pet.objects.get(id=1,name='Pepe')` . The get command will return an error if the query results in two or more records; it's like an assignment with an sql table.
+
+
+# Personal Project Tutorial (with Bootstrap) Lynda Notes
