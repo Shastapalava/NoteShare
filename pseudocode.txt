@@ -71,6 +71,55 @@ function Create_new_doc(userId, docName)
     user_DB.find_record(userId).docs.append(new_docId)
     return ("New document created successfully!")
 
+ function Invite_to_doc(userId, docId)
+     Assert userId is in user_DB otherwise
+         return ("invalid userId!")
+     Assert docId is valid otherwise
+         return ("Invalid document format!")
+     If user_DB.find_record(userId).get_docs.find(docId) is true then
+         return ("User is already has access to the document!")
+     If invite_DB.find_record(userId).find(docId) is true then
+         return ("Invitation was already sent to the user")
+     invite_DB.add_record(userId, docId)
+     return ("User is successfully invited!")
+
+ function Remove_from_doc(userId, docId)
+     Assert userId is in user_DB otherwoise
+         return ("Invalid userID!")
+     Assert docId is valid otherwise
+         return ("Invalid document format!")
+     If user_DB.find_record(userId).get_docs.find(doc) is true then
+         user_DB.find_record(userId).docs.delete(doc)
+         return ("User was sucessfullyremoved from the document!")
+     return ("Specified user is not on the document!")
+
+ function Set_doc_status(userId, docId, status)
+     Assert userId is valid otherwise
+         return ("Invalid userID!")
+     Assert docId is valid otherwise
+         return ("Invalid document format!")
+     Assert status is in {"public","shared","restricted","private"} otherwise
+         return ("Invalid status change attempt!")
+     If user_DB.find_record(userId).get_status is admin then
+         doc_DB.find_record(docId).set_status(status)
+     If user_DB.find_record(userId).get_docs().find(doc) is true then
+         doc_DB.find_record(docId).set_status(status)
+     return("You don't have permission to change the document status")
+
+ function Respond_to_invite(inviteId, response)
+     Assert inviteId is in invite_DB otherwise
+         return ("Invalid inviteId!")
+     Assert type(response) is boolean otherwise
+         return ("Invalid response format (must be boolean True for accept or False for decline)!")
+     If response is True then
+         set user to invite_DB.find_record(inviteId)[0]
+         set doc to invite_DB.find_record(inviteId)[1]
+         user_DB.find_record(user).docs.append(doc)
+         invite_DB.delete(inviteId)
+         return ("Invitation successfully accepted!")
+     invite_DB.delete(inviteId)
+     return ("Invitation successfully declined!")
+
 function apply_to_be_ou(email)
     Assert email is valid otherwise
         return ("Invalid email!")
