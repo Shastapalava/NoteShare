@@ -101,3 +101,4 @@ function read_complain_on_docs(docId, message, taboo_word)
     Assert docId is valid otherwise
         return("Invalid docId!")
      return message, taboo_word
+
