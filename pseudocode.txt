@@ -78,3 +78,22 @@ function apply_to_be_ou(email)
         return ("User already exists!")
     return ("SU was notified and will get to you shortly")
     
+    
+function Search_files (file)
+    Assert file is valid otherwise
+        return ("Invalid file!")
+    If file is in the Documents then
+        return file
+    return ("File Not Found!")
+
+function Search_OUs (username)
+    Assert username is valid otherwise
+        return("Invalid username!")
+    If userId is in OUs then
+        return username
+    return ("Ou Not Found!")
+
+function Read_documents(docId)
+    Assert docId is valid otherwise
+        return ("invalid docId!")
+    
