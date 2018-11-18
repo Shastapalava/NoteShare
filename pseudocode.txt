@@ -137,7 +137,7 @@ function Search_files (file)
 
 function Search_OUs (userId)
     Assert userId is valid otherwise
-        return("Invalid username!")
+        return("Invalid userId!")
     If userId is in OUs then
         return username
     return ("Ou Not Found!")
@@ -148,6 +148,29 @@ function Read_documents(docId)
     
 function read_complain_on_docs(docId, message, taboo_word)
     Assert docId is valid otherwise
+        return("Invalid userId!")
+     return message, taboo_word
+
+function update_doc (docId)
+     Assert docId is valid otherwise
+        return("Invalid userId!")
+     if docId is in documents then
+        doc_DB.update(docId)
+     return ("Document successfully updated"!)
+
+
+function complain_about_ous(userId, message, taboo_word)
+    Assert userId is valid otherwise
         return("Invalid docId!")
      return message, taboo_word
+
+
+function access_old_version_docs(docId,oldversion)
+    Assert docId is valid otherwise
+        return("Invalid userId!")
+    Assert oldversion is valid otherwise
+        return("This document doesn't have old version!")
+    If docId is in documents then
+        return oldversion
+
 
