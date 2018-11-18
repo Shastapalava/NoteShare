@@ -71,4 +71,10 @@ function Create_new_doc(userId, docName)
     user_DB.find_record(userId).docs.append(new_docId)
     return ("New document created successfully!")
 
-
+function apply_to_be_ou(email)
+    Assert email is valid otherwise
+        return ("Invalid email!")
+    If email is in user_DB then
+        return ("User already exists!")
+    return ("SU was notified and will get to you shortly")
+    
