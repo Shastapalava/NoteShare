@@ -23,3 +23,9 @@ urlpatterns = [
     url(r'^$', views.home, name = 'home'),
     url(r'^user/(\d+)/',views.ordUser_detail, name = 'ordUser_detail'),
 ] 
+
+# Admin Site Config
+admin.sites.AdminSite.site_header = 'NoteShare'
+admin.sites.AdminSite.site_title = 'NoteShare'
+admin.sites.AdminSite.index_title = 'Welcome to NoteShare'
+admin.sites.AdminSite.site_url = ''
