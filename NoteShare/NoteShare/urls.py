@@ -25,7 +25,7 @@ urlpatterns = [
 ] 
 
 # Admin Site Config
-admin.sites.AdminSite.site_header = 'NoteShare'
+admin.sites.AdminSite.site_header = 'NoteShare Login'
 admin.sites.AdminSite.site_title = 'NoteShare'
 admin.sites.AdminSite.index_title = 'Welcome to NoteShare'
-admin.sites.AdminSite.site_url = ''
+admin.sites.AdminSite.site_url = ""

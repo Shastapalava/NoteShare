@@ -1,5 +1,47 @@
+# Running NoteShare_mk2
+
+To run NoteShare_mk2 (the instance of NoteShare that does not rely on the Django Admin interface), execute the following commands.
+
+First, install `virtualenv` which creates a separate environment for your python code. `virtualenv`  is a program that allows you to run specific versions of the python libraries you import. More info here a quick summary can be found in this [stackoverflow post](https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe), and more info can be found in the [virtualenv documentation](https://virtualenv.pypa.io/en/latest/userguide/). 
+
+```shell
+pip install virtualenv
+```
+
+Then, navigate to the root folder of this github repo (the directory where the readme is) and run this command.
+
+```
+virtualenv NoteShare_mk2
+```
+
+Then navigate into the `NoteShare_mk2` directory with 
+
+```
+cd NoteShare_mk2
+```
+
+Next, activate your virtual environment
+
+```
+source ./bin/activate
+```
+
+Finally, install all required libraries for the project with
+
+```
+pip install -r requirements.txt 
+```
+
+If you want to quit `virtualenv`, type 
+
+```
+deactivate
+```
+
+
 
 # NoteShare
+
 NoteShare will be a note-taking software system designed technical high schools, colleges, and after school programs. The app enables students to share study guides and notes related to programming, algorithms and data structures. 
 
 Essentially, each class in the school is a separate user group. Each class has a class president who act as a Super User to moderate the creation of study guides. Within the class, some students may choose to participate in using the application, while others do not. Students who participate by sharing their notes or helping to add to or edit other’s notes have full access to edit and view the class’ study guides. We call these students Ordinary Users. However, students who decline to participate will be Guest Users with more limited access.
@@ -110,12 +152,11 @@ unless otherwise noted, I'm drawing from [this page](https://docs.djangoproject.
 	- create invitations model, with foreign key relationship to documents/posts
 	- **FIND** way to add search to an invitations field AND display a list of people invited on the **add or change** page.
 - creator of a document can decide if the document is 
-	- open to the public (can be seen by everyone)
-	- restricted (can only be viewed as read-only by GU's and edited by OU's), 
-	- shared (viewed/edited by OU's who are invited) and private  
-		- add open/restricted/shared option to posts model `privacy = models.CharField(max_length=10,choices=PRIVACY_CHOICES,default='private')` where `PRIVACY_CHOICES` is a list of tuples similar to `STATUS_CHOICES` already in `models.py`
-		- **FIND** how to restrict user access when looking at list of notes/posts. This has to do with "object-level permissions", so [this](https://p.ota.to/blog/pushing-the-boundaries-of-the-django-admin/) may help.
-	
+  - open to the public (can be seen by everyone)
+  - restricted (can only be viewed as read-only by GU's and edited by OU's), 
+  - shared (viewed/edited by OU's who are invited) and private  
+  	- add open/restricted/shared option to posts model `privacy = models.CharField(max_length=10,choices=PRIVACY_CHOICES,default='private')` where `PRIVACY_CHOICES` is a list of tuples similar to `STATUS_CHOICES` already in `models.py`
+  	- **FIND** how to restrict user access when looking at list of notes/posts. This has to do with "object-level permissions", so [this](https://p.ota.to/blog/pushing-the-boundaries-of-the-django-admin/) may help.
 
 - an OU can accept or deny the invitation(s) placed by other OUs for their documents 
 	- need an invitation requests model/table that has as columns:
