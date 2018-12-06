@@ -19,7 +19,7 @@ from django.conf.urls import url
 from ordUser import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url('', admin.site.urls),
     url(r'^$', views.home, name = 'home'),
     url(r'^user/(\d+)/',views.ordUser_detail, name = 'ordUser_detail'),
 ] 
