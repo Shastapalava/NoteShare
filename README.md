@@ -1,45 +1,3 @@
-# Running NoteShare_mk2
-
-To run NoteShare_mk2 (the instance of NoteShare that does not rely on the Django Admin interface), execute the following commands.
-
-First, install `virtualenv` which creates a separate environment for your python code. `virtualenv`  is a program that allows you to run specific versions of the python libraries you import. More info here a quick summary can be found in this [stackoverflow post](https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe), and more info can be found in the [virtualenv documentation](https://virtualenv.pypa.io/en/latest/userguide/). 
-
-```shell
-pip install virtualenv
-```
-
-Then, navigate to the root folder of this github repo (the directory where the readme is) and run this command.
-
-```
-virtualenv NoteShare_mk2
-```
-
-Then navigate into the `NoteShare_mk2` directory with 
-
-```
-cd NoteShare_mk2
-```
-
-Next, activate your virtual environment
-
-```
-source ./bin/activate
-```
-
-Finally, install all required libraries for the project with
-
-```
-pip install -r requirements.txt 
-```
-
-If you want to quit `virtualenv`, type 
-
-```
-deactivate
-```
-
-
-
 # NoteShare
 
 NoteShare will be a note-taking software system designed technical high schools, colleges, and after school programs. The app enables students to share study guides and notes related to programming, algorithms and data structures. 
@@ -215,3 +173,51 @@ constraints:
 - a creative feature worthy of 15% is required for each system, one possible feature could be allowing more than word per line, or speech-based document updating is allowed, or some machine learning features to render this system adaptable/evolving by itself thru usage. 
 
 - a GUI is required, different users should have their own page populated by his/her picture and 3 most recent documents. For a brand-new user, the 3 most popular (most read and/or updated) files in the system are shown. 
+
+# Setting up `virtualenv` with NoteShare
+
+First, install `virtualenv` which creates a separate environment for your python code. `virtualenv`  is a program that allows you to run specific versions of the python libraries you import. More info here a quick summary can be found in this [stackoverflow post](https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe), and more info can be found in the [virtualenv documentation](https://virtualenv.pypa.io/en/latest/userguide/). 
+
+```shell
+pip install virtualenv
+```
+
+Then, navigate to the root folder of this github repo (the directory where the readme is) and run this command.
+
+```
+virtualenv NoteShare
+```
+
+After that, tell virtualenv to use your latest version of python.
+
+```
+virtualenv NoteShare -p `which python`
+```
+Then navigate into the `NoteShare` directory with 
+
+```
+cd NoteShare_mk2
+```
+
+Next, activate your virtual environment
+
+```
+source ./bin/activate
+```
+After all this, you can finally install django with 
+
+```
+pip	install	Django==2.0.5
+```
+
+And you can check if everything has been installed correctly by executing the following command and observing the output. 
+
+```
+pip list
+```
+
+If you want to quit `virtualenv`, type 
+
+```
+deactivate
+```
