@@ -26,3 +26,13 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
+
+# for ana's text class implement a solution that validates the text from the body text box to make sure
+# each word is on a separate line of text (use python string methods to do this). If not, return an 
+# error message to the user. 
+
+# more on returning messages in admin interface: https://docs.djangoproject.com/en/2.0/ref/contrib/messages/
+# more on model validation with clean() https://docs.djangoproject.com/en/2.1/topics/forms/modelforms/#overriding-modelform-clean-method
+
+# for finding the differences between text blocks, you could use the difflib library
+# https://stackoverflow.com/questions/19120489/compare-two-files-report-difference-in-python

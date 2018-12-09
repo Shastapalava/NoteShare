@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ordUser',
     'cms.apps.CmsConfig',
+    'reversion',
+    'reversion_compare',
 ]
 
 MIDDLEWARE = [
