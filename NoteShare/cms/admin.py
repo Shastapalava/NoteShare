@@ -1,6 +1,6 @@
 from django.contrib import admin
 from reversion_compare.admin import CompareVersionAdmin
-from .models import Post
+from .models import Post,Complain_OU
 from .forms import PostAdminForm
 
 #admin.site.register(Post) #this displays all class elements of Post to be edited. Equivalent to putting every attribute in list_display
@@ -15,3 +15,8 @@ class PostAdmin(CompareVersionAdmin):
 	date_hierarchy = 'publish'
 	ordering = ('status','publish')
 	form = PostAdminForm
+
+@admin.register(Complain_OU)
+class Complain_OUAdmin(admin.ModelAdmin):
+	list_display = ('OU_name', 'reason')
+	#raw_id_fields = ('author',)

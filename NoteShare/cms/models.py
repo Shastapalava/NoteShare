@@ -27,6 +27,12 @@ class Post(models.Model):
 	def __str__(self):
 		return self.title
 
+
+
+class Complain_OU(models.Model):
+	OU_name = models.ForeignKey(User,on_delete=models.CASCADE,related_name='complaint')
+	reason = models.TextField()
+
 # for ana's text class implement a solution that validates the text from the body text box to make sure
 # each word is on a separate line of text (use python string methods to do this). If not, return an 
 # error message to the user. 
