@@ -16,12 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url
 
-from ordUser import views
-
 urlpatterns = [
     url('', admin.site.urls),
-    url(r'^$', views.home, name = 'home'),
-    url(r'^user/(\d+)/',views.ordUser_detail, name = 'ordUser_detail'),
 ] 
 
 # Admin Site Config
