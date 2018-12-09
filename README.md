@@ -238,6 +238,6 @@ source ./bin/activate
 # Dependencies
 After you've set up the python virtual environment, install the necessary dependencies with
 ```
-pip install django-reversion-compare
 pip install django-reversion
+pip install django-reversion-compare
 ```
