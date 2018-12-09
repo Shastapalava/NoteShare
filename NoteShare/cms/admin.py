@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Complain_OU
+
+
+#from .models import Complain
+
 
 #admin.site.register(Post) #this displays all class elements of Post to be edited. Equivalent to putting every attribute in list_display
 
@@ -12,3 +16,8 @@ class PostAdmin(admin.ModelAdmin):
 	raw_id_fields = ('author',)
 	date_hierarchy = 'publish'
 	ordering = ('status','publish')
+
+admin.site.register(Complain_OU)
+class Complain_OUAdmin(admin.ModelAdmin):
+	list_display = ('title', 'slug', 'author', 'publish', 'status')
+	raw_id_fields = ('author',)
