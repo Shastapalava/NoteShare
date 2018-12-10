@@ -1,6 +1,6 @@
 from django.contrib import admin
 from reversion_compare.admin import CompareVersionAdmin
-from .models import Post,Complain_OU
+from .models import Post,Complain_OU,Invitation
 from .forms import PostAdminForm
 
 #admin.site.register(Post) #this displays all class elements of Post to be edited. Equivalent to putting every attribute in list_display
@@ -23,4 +23,4 @@ class Complain_OUAdmin(admin.ModelAdmin):
 	
 @admin.register(Invitation)
 class Invitation(admin.ModelAdmin):
-	list_display = ('OU_name', 'on_doc')
+    list_display = ('OU_name', 'on_doc')
