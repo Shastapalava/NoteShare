@@ -20,3 +20,7 @@ class PostAdmin(CompareVersionAdmin):
 class Complain_OUAdmin(admin.ModelAdmin):
 	list_display = ('OU_name', 'reason')
 	#raw_id_fields = ('author',)
+	
+@admin.register(Invitation)
+class Invitation(admin.ModelAdmin):
+	list_display = ('OU_name', 'on_doc')
