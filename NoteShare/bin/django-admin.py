@@ -1,4 +1,4 @@
-#!/media/david/Drive/Binder/CSC 322/NoteShare/NoteShare/bin/python
+#!/Users/hualin/Desktop/NoteShare/NoteShare/bin/python
 from django.core import management
 
 if __name__ == "__main__":

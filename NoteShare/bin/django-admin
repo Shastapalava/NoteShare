@@ -1,6 +1,5 @@
-#!/bin/sh
-'''exec' "/media/david/Drive/Binder/CSC 322/NoteShare/NoteShare/bin/python" "$0" "$@"
-' '''
+#!/Users/hualin/Desktop/NoteShare/NoteShare/bin/python
+
 # -*- coding: utf-8 -*-
 import re
 import sys

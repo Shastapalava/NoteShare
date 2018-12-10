@@ -36,7 +36,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/media/david/Drive/Binder/CSC 322/NoteShare/NoteShare"
+set -gx VIRTUAL_ENV "/Users/hualin/Desktop/NoteShare/NoteShare"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
