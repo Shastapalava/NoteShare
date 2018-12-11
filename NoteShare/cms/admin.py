@@ -24,3 +24,4 @@ class Complain_OUAdmin(admin.ModelAdmin):
 @admin.register(Invitation)
 class Invitation(admin.ModelAdmin):
     list_display = ('OU_name', 'on_doc')
+    raw_id_fields = ('OU_name','on_doc')
