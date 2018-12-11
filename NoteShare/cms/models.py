@@ -34,8 +34,8 @@ class Complain_OU(models.Model):
     reason = models.TextField()
 
 class Invitation(models.Model):
-    OU_name = models.ForeignKey(User,related_name='ivitation_to')
-    on_doc = models.ForeignKey(Post,related_name = 'on_documnent')
+    OU_name = models.ForeignKey(User,on_delete=models.CASCADE,related_name='ivitation_to')
+    on_doc = models.ForeignKey(Post,on_delete=models.CASCADE,related_name = 'on_documnent')
 
 
 # for ana's text class implement a solution that validates the text from the body text box to make sure
