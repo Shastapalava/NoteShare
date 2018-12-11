@@ -38,6 +38,7 @@ unless otherwise noted, I'm drawing from [this page](https://docs.djangoproject.
 - creator of a document can invite other OUs to update it
 	- create invitations model, with foreign key relationship to documents/posts
 	- **FIND** way to add search to an invitations field AND display a list of people invited on the **add or change** page.
+	***Done*** (but still needs to be tested with multiple users)
 - creator of a document can decide if the document is 
   - open to the public (can be seen by everyone)
   - restricted (can only be viewed as read-only by GU's and edited by OU's), 
