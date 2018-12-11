@@ -1,6 +1,6 @@
 # Advanced Permissions System
 
-## `User` objects[(link)](https://docs.djangoproject.com/en/2.1/topics/auth/default/#user-objects)
+## `User` objects[(source)](https://docs.djangoproject.com/en/2.1/topics/auth/default/#user-objects)
 
 [`User`](https://docs.djangoproject.com/en/2.1/ref/contrib/auth/#django.contrib.auth.models.User) objects are the core of the authentication system. They typically represent the people interacting with your site and are used to enable things like restricting access, registering user profiles, associating content with creators etc. Only one class of user exists in Django’s authentication framework, i.e., [`'superusers'`](https://docs.djangoproject.com/en/2.1/ref/contrib/auth/#django.contrib.auth.models.User.is_superuser) or admin [`'staff'`](https://docs.djangoproject.com/en/2.1/ref/contrib/auth/#django.contrib.auth.models.User.is_staff) users are just user objects with special attributes set, not different classes of user objects.
 
@@ -14,7 +14,15 @@ The primary attributes of the default user are:
 
 See the [`full API documentation`](https://docs.djangoproject.com/en/2.1/ref/contrib/auth/#django.contrib.auth.models.User) for full reference, the documentation that follows is more task oriented.
 
-## Django Con Notes
+## Extending the User AbstractUser notes 
+
+The django admin interface, like the rest of django, depends on `django.contrib.auth.models` for its user models and authentication. So, if you want to add a new class of users to the django admin interfact, you need to extend that class. We're just going to add a flag called `is_OU` to differentiate between ordinary users and guest users (GU). Guest users are the default, i.e. `is_OU==False` and `is_superuser==False`. Notice that `is_superuser` is already implemented.
+
+I first came accross [this article](https://simpleisbetterthancomplex.com/tutorial/2018/01/18/how-to-implement-multiple-user-types-with-django.html), but [this one](https://wsvincent.com/django-custom-user-model-tutorial/) is up to date with django 2. 
+
+Here is an excerpt from an article that describes the process of overwriting the `AbstractUser` class to add more information to the users: 
+
+## Django Con Notes [(source)](https://p.ota.to/blog/pushing-the-boundaries-of-the-django-admin/)
 
 Django Suit gives sidebars and other interface elements. 
 

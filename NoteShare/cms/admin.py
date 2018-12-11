@@ -1,7 +1,11 @@
 from django.contrib import admin
 from reversion_compare.admin import CompareVersionAdmin
-from .models import Post,Complain_OU,Invitation
-from .forms import PostAdminForm
+from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
+
+
+from .models import Post,Complain_OU, Invitation, CustomUser
+from .forms import PostAdminForm, CustomUserCreationForm, CustomUserChangeForm
 
 #admin.site.register(Post) #this displays all class elements of Post to be edited. Equivalent to putting every attribute in list_display
 
@@ -27,16 +31,23 @@ class Invitation(admin.ModelAdmin):
     raw_id_fields = ('OU_name','on_doc')
     #list_editable = ('OU_name','on_doc')
 
-#@admin.register(LockPost)
-#class LockPost(admin.ModelAdmin)
-	
+@admin.register(CustomUser)
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = CustomUser
+    list_display = ['email', 'username','is_OU','is_superuser']
 
-#def safe_update(request,model,slug):
-	#obj = model.objects.get(slug)
-	#if obj.locked:
-		#ptint("Locked")
-	#else:
-	#3obj.lock()
-		#return update_object(request,model,slug)
+
+# @admin.register(LockPost)
+# class LockPost(admin.ModelAdmin)
+
+# def safe_update(request,model,slug):
+# 	obj = model.objects.get(slug)
+# 	if obj.locked:
+# 		print("Locked")
+# 	else:
+# 	obj.lock()
+# 		return update_object(request,model,slug)
 
 

@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,10 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cms.apps.CmsConfig',
-    'reversion',
-    'reversion_compare',
+    'cms.apps.CmsConfig', # the cms app we wrote
+    'reversion', #for keeping a history of posts
+    'reversion_compare' # for comparing historical posts
 ]
+
+#this line enables us to use the user class that includes is_OU rather than the default django user class
+AUTH_USER_MODEL = 'cms.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

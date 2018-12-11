@@ -1,6 +1,9 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+
+class CustomUser(AbstractUser):
+    is_OU = models.BooleanField(default=False)
 
 class Post(models.Model):
 	STATUS_CHOICES = (
@@ -14,7 +17,7 @@ class Post(models.Model):
 	 	#(search engine friendly) url for each post. the unique_for_date='publish' argument notifies django
 	 	# to prevent multiple posts from having the same slug, if they happen to to have the same date
 	slug = models.SlugField(max_length=250,unique_for_date='publish')
-	author = models.ForeignKey(User,on_delete=models.CASCADE,related_name='blog_posts') #many to one relationship: every post 
+	author = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='blog_posts') #many to one relationship: every post 
 	body = models.TextField()
 	publish = models.DateTimeField(default=timezone.now)
 	created = models.DateTimeField(auto_now_add=True)
@@ -28,19 +31,14 @@ class Post(models.Model):
 	def __str__(self):
 		return self.title
 
-
-
 class Complain_OU(models.Model):
-    OU_name = models.ForeignKey(User,on_delete=models.CASCADE,related_name='complaint')
+    OU_name = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complaint')
     reason = models.TextField()
 
 class Invitation(models.Model):
-    OU_name = models.ForeignKey(User,on_delete=models.CASCADE,related_name='ivitation_to')
+    OU_name = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='ivitation_to')
     on_doc = models.ForeignKey(Post,on_delete=models.CASCADE,related_name = 'on_documnent')
-     #invite_id = models.AutoField(primary_key=True)
-
-#class LockPost(models.Model):
-	#locked = models.BooleanField(default=False)   
+     #invite_id = models.AutoField(primary_key=True)  
 
 # for ana's text class implement a solution that validates the text from the body text box to make sure
 # each word is on a separate line of text (use python string methods to do this). If not, return an 
