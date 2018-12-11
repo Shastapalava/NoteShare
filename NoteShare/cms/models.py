@@ -20,7 +20,8 @@ class Post(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now_add=True)
 	status = models.CharField(max_length=10,choices=STATUS_CHOICES,default='public')
-
+	locked = models.BooleanField(default=False)
+	
 	class Meta:
 		ordering = ('-publish',)
 
@@ -36,6 +37,11 @@ class Complain_OU(models.Model):
 class Invitation(models.Model):
     OU_name = models.ForeignKey(User,related_name='ivitation_to')
     on_doc = models.ForeignKey(Post,related_name = 'on_documnent')
+    #invite_id = models.AutoField(primary_key=True)
+
+#class LockPost(models.Model):
+	#locked = models.BooleanField(default=False)
+	
 
 
 # for ana's text class implement a solution that validates the text from the body text box to make sure

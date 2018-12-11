@@ -7,7 +7,7 @@ from .forms import PostAdminForm
 
 @admin.register(Post) #this line does the same thing as admin.site.register(Post), but lets you also create your own ModelAdmin class to choose what you display in the admin interface
 class PostAdmin(CompareVersionAdmin):
-	list_display = ('title', 'slug', 'author','publish','status') #this doesn't let you edit such things like the date created
+	list_display = ('locked','title', 'slug', 'author','publish','status') #this doesn't let you edit such things like the date created
 	list_filter = ('status', 'created', 'publish','author')
 	search_fields = ('title','body')
 	#prepopulated_fields = {'slug':('title',)}
@@ -25,3 +25,18 @@ class Complain_OUAdmin(admin.ModelAdmin):
 class Invitation(admin.ModelAdmin):
     list_display = ('OU_name', 'on_doc')
     raw_id_fields = ('OU_name','on_doc')
+    #list_editable = ('OU_name','on_doc')
+
+#@admin.register(LockPost)
+#class LockPost(admin.ModelAdmin)
+	
+
+#def safe_update(request,model,slug):
+	#obj = model.objects.get(slug)
+	#if obj.locked:
+		#ptint("Locked")
+	#else:
+	#3obj.lock()
+		#return update_object(request,model,slug)
+
+
