@@ -13,7 +13,7 @@ class PostAdminForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'body',)
+        fields = ('title','author', 'body',)
 
 # Custom User Stuff
 class CustomUserCreationForm(UserCreationForm):

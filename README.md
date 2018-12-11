@@ -205,7 +205,7 @@ virtualenv NoteShare -p `which python`
 Then navigate into the `NoteShare` directory with 
 
 ```
-cd NoteShare_mk2
+cd NoteShare
 ```
 
 Next, activate your virtual environment
