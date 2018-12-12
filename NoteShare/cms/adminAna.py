@@ -12,21 +12,21 @@ class TabooAdmin(admin.ModelAdmin):
 	def get_queryset(self,request):
 		# first get the default queryset for the class
 		qs = super(TabooAdmin,self).get_queryset(request)
-		# now, if the user is super user (attribute in ), then return all entries, otherwise return all entries where the user is on that team
+		# now, if the user is super user (attribute in ), then return all entries, otherwise return nothing
 		if request.user.is_superuser:
 			return qs
-		return qs.filter(team=request.user)
-    # raw_id_fields = ('tWord',)
+		return Taboo.objects.none()
 
-
-#Ana
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
     list_display = ['email', 'username','is_currently_an_OU','pending_OU','is_superuser']
-	
-
-
-    
+    # def get_queryset(self,request):
+    #     # first get the default queryset for the class
+    #     qs = super(CustomUserAdmin,self).get_queryset(request)
+	# 	# now, if the user is super user (attribute in ), then return all entries, otherwise return nothing
+    #     if request.user.is_superuser:
+    #         return qs
+    #     return qs.filter(email=request.user.email)
