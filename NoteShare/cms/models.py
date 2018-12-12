@@ -32,19 +32,18 @@ class Post(models.Model):
 		return self.title
 
 class ComplainOU(models.Model):
-    OU_name = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complaint')
+    OUName = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complaint')
     reason = models.TextField()
 
 class Invitation(models.Model):
-    OU_name = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='ivitation_to')
+    OUName = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='ivitation_to')
     on_doc = models.ForeignKey(Post,on_delete=models.CASCADE,related_name = 'on_documnent')
      #invite_id = models.AutoField(primary_key=True)  
 	
 class TabooList(models.Model):
 	tWord = models.CharField(max_length=20)
+	isPending = models.BooleanField(default=True)
 
-class PendingTaboo(models.Model):
-	tSubmission = models.CharField(max_length=20)
 
 # for ana's text class implement a solution that validates the text from the body text box to make sure
 # each word is on a separate line of text (use python string methods to do this). If not, return an 
