@@ -3,8 +3,8 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
-    isOU = models.BooleanField(default=False)
-    pendingOU = models.BooleanField(default=False)
+    is_currently_an_OU = models.BooleanField(default=False)
+    pending_OU = models.BooleanField(default=False)
 
 class Post(models.Model):
 	STATUS_CHOICES = (
@@ -32,7 +32,7 @@ class Post(models.Model):
 	def __str__(self):
 		return self.title
 
-class Complaints(models.Model):
+class Complaint(models.Model):
     complainAbout = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complainee')
     commplainFrom = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complainant',blank=True, null=True,default=None)
     post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='postComplaint',blank=True, null=True)
@@ -45,7 +45,7 @@ class Invitation(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name = 'postInvite')
     #invite_id = models.AutoField(primary_key=True)  
 	
-class TabooList(models.Model):
+class Taboo(models.Model):
 	tabooWord = models.CharField(max_length=20)
 	isPending = models.BooleanField(default=True)
 

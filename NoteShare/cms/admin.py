@@ -20,7 +20,7 @@ class PostAdmin(CompareVersionAdmin):
 	ordering = ('status','publish')
 	form = PostAdminForm
 
-@admin.register(Complaints)
+@admin.register(Complaint)
 class ComplaintsAdmin(admin.ModelAdmin):
 	list_display = ('complainAbout', 'commplainFrom','post','explanation')
 	raw_id_fields = ('complainAbout', 'commplainFrom','post')
@@ -36,10 +36,10 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
-    list_display = ['email', 'username','isOU','pendingOU','is_superuser']
+    list_display = ['email', 'username','is_currently_an_OU','pending_OU','is_superuser']
 	
-@admin.register(TabooList)
-class TabooListAdmin(admin.ModelAdmin):
+@admin.register(Taboo)
+class TabooAdmin(admin.ModelAdmin):
     list_display = ('tabooWord',)
     # raw_id_fields = ('tWord',)
 
