@@ -34,7 +34,7 @@ class Post(models.Model):
 
 class Complaint(models.Model):
     complainAbout = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complainee')
-    commplainFrom = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complainant',blank=True, null=True,default=None)
+    commplainFrom = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complainant',blank=True, null=True)
     post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='postComplaint',blank=True, null=True)
     explanation = models.TextField()
 

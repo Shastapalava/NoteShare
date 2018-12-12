@@ -2,6 +2,8 @@
 
 1. Posts
 2. Complaints
+	- add permissions to document search in raw_id_fields for complaints
+	- add feature to complain about specific document edit by accessing django-reversion table
 3. Taboo
 	- make "pending status" editable from changelist
 4. Membership (assigning SU,OU,GU)

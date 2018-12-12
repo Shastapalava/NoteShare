@@ -1,6 +1,8 @@
 *.pyc
 **/.idea
 *.sqlite3
+./NoteShare/db.sqlite3
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
