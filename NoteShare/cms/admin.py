@@ -24,14 +24,14 @@ class PostAdmin(CompareVersionAdmin):
 
 @admin.register(ComplainOU)
 class ComplainOUAdmin(admin.ModelAdmin):
-	list_display = ('OU_name', 'reason')
+	list_display = ('OUName', 'reason')
 	#raw_id_fields = ('author',)
 	
 @admin.register(Invitation)
 class Invitation(admin.ModelAdmin):
-    list_display = ('OU_name', 'on_doc')
-    raw_id_fields = ('OU_name','on_doc')
-    #list_editable = ('OU_name','on_doc')
+    list_display = ('OUName', 'on_doc')
+    raw_id_fields = ('OUName','on_doc')
+    #list_editable = ('OUName','on_doc')
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
@@ -44,11 +44,6 @@ class CustomUserAdmin(UserAdmin):
 class TabooListAdmin(admin.ModelAdmin):
     list_display = ('tWord',)
     # raw_id_fields = ('tWord',)
-
-@admin.register(PendingTaboo)
-class PendingTabooAdmin(admin.ModelAdmin):
-    list_display = ('tSubmission',)
-    # raw_id_fields = ('tSubmission',)
 
 # @admin.register(LockPost)
 # class LockPost(admin.ModelAdmin)
