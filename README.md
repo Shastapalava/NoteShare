@@ -111,7 +111,6 @@ unless otherwise noted, I'm drawing from [this page](https://docs.djangoproject.
   	- slug, the slug (unique id) of the document in question
 
 - lock a shared document for updating, only one OU can lock a document successfully, the system should indicate which OU is updating the document 
-  - No idea how to accomplish this
   - create a view method that overrides the link on the **change list** page that leads to the **add or change** page such that if another user in the database is editing that given file, the user attempting to access it is rerouted to an error or "please wait" page. 
   - see [customizing admin templates](https://docs.djangoproject.com/en/2.1/intro/tutorial07/#customizing-your-project-s-templates)
 
