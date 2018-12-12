@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
 from django.conf import settings
+import uuid
 
 class CustomUser(AbstractUser):
     is_currently_an_OU = models.BooleanField(default=False)
@@ -41,8 +42,7 @@ class Complaint(models.Model):
 	#commplainFrom = models.ForeignKey(editable = False)
 	post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='postComplaint',blank=True, null=True)
 	explanation = models.TextField()
-	def save(self):
-			commplainFrom = self.user
+	
 
 
 class Invitation(models.Model):
