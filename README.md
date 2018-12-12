@@ -1,3 +1,12 @@
+# Battle Plan:
+
+1. Posts
+2. Complaints
+3. Taboo
+4. Membership (assigning SU,OU,GU)
+5. Permissions (restricting access based on Membership)
+
+
 # NoteShare
 
 NoteShare will be a note-taking software system designed technical high schools, colleges, and after school programs. The app enables students to share study guides and notes related to programming, algorithms and data structures. 
@@ -14,31 +23,29 @@ unless otherwise noted, I'm drawing from [this page](https://docs.djangoproject.
 ### SU: 
 
 - update membership 
-	- django admins are automatically allowed to do this
+  - Todo(David) add the IsOU option to the user change page also to the add user page.
 
 - maintain a list of "taboo" words 
-	- create a new model for taboo words, then [register](https://docs.djangoproject.com/en/2.1/ref/contrib/admin/#the-register-decorator) the model in `admin.py`. A link to the taboo list will appear on the **admin index** page, while the list itself will appear in the **change list** page.
+  - Todo (Ana) create a new model for taboo words, then [register](https://docs.djangoproject.com/en/2.1/ref/contrib/admin/#the-register-decorator) the model in `admin.py`. A link to the taboo list will appear on the **admin index** page, while the list itself will appear in the **change list** page.
 
 - unlock any locked document 
-	- add a locked or unlocked column/attribute to the posts/notes model. This should appear automatically on the **add or change** django page.
+  - **DONE** (Angelika) a locked or unlocked column/attribute to the posts/notes model. This should appear automatically on the **add or change** django page.
 
 - process complaints about OU's 
-	- create a complaints model, then register in `admin.py`  A link to the complaints list will appear on the **admin index** page, while the list itself will appear in the **change list** page.
+  - **DONE** (Hua) create a complaints model, then register in `admin.py`  A link to the complaints list will appear on the **admin index** page, while the list itself will appear in the **change list** page.
 
-- have all privileges reserved for OUs inside any group 
-	- see video on [object-level permissions](https://p.ota.to/blog/pushing-the-boundaries-of-the-django-admin/) in django to restrict group access to group documents.
-	- this [stack overflow](https://stackoverflow.com/questions/6310983/django-admin-specific-user-admin-content) article might help too
 
 ### OU: 
 - create new document(s), 
-	- **DONE** (David)
+  - **DONE** (David)
 - the creator of a document is the owner of the document 
-	- **FIND**: how to establish ownership through the **add or change** page. Might need to override methods in admin.py like [this](https://stackoverflow.com/questions/48700888/django-admin-how-to-check-model-instance-belong-to-owner-before-deleting).
+  - **DONE** (David) how to establish ownership through the **add or change** page. Might need to override methods in admin.py like [this](https://stackoverflow.com/questions/48700888/django-admin-how-to-check-model-instance-belong-to-owner-before-deleting).
+    - Note that the owner and author are the same thing. Authors can share their post with other users through invitations
 
 - creator of a document can invite other OUs to update it
-	- create invitations model, with foreign key relationship to documents/posts
-	- **FIND** way to add search to an invitations field AND display a list of people invited on the **add or change** page.
-	***Done*** (but still needs to be tested with multiple users)
+  - **DONE** (Angelika) create invitations model, with foreign key relationship to documents/posts
+  - Todo (David) way to add search to an invitations field AND display a list of people invited on the **add or change** page.
+    ***Done*** (but still needs to be tested with multiple users)
 - creator of a document can decide if the document is 
   - open to the public (can be seen by everyone)
   - restricted (can only be viewed as read-only by GU's and edited by OU's), 
@@ -47,22 +54,22 @@ unless otherwise noted, I'm drawing from [this page](https://docs.djangoproject.
   	- **FIND** how to restrict user access when looking at list of notes/posts. This has to do with "object-level permissions", so [this](https://p.ota.to/blog/pushing-the-boundaries-of-the-django-admin/) may help.
 
 - an OU can accept or deny the invitation(s) placed by other OUs for their documents 
-	- need an invitation requests model/table that has as columns:
-		- foreign key: userTO, the user the inviation is sent to
-		- foreign key: userFROM, the user the invitation was sent from
-		- slug, the slug (unique id) of the document in question
+  - need an invitation requests model/table that has as columns:
+  	- foreign key: userTO, the user the inviation is sent to
+  	- foreign key: userFROM, the user the invitation was sent from
+  	- slug, the slug (unique id) of the document in question
 
 - lock a shared document for updating, only one OU can lock a document successfully, the system should indicate which OU is updating the document 
-	- No idea how to accomplish this
-	- create a view method that overrides the link on the **change list** page that leads to the **add or change** page such that if another user in the database is editing that given file, the user attempting to access it is rerouted to an error or "please wait" page. 
-	- see [customizing admin templates](https://docs.djangoproject.com/en/2.1/intro/tutorial07/#customizing-your-project-s-templates)
+  - No idea how to accomplish this
+  - create a view method that overrides the link on the **change list** page that leads to the **add or change** page such that if another user in the database is editing that given file, the user attempting to access it is rerouted to an error or "please wait" page. 
+  - see [customizing admin templates](https://docs.djangoproject.com/en/2.1/intro/tutorial07/#customizing-your-project-s-templates)
 
 - update a successfully locked document, and then assign a unique version sequence number and remember who and when makes the updates 
 
 - unlock a shared document locked by him/herself 
 
 - file complaints to the owner of a document about other OUs'updates or to the SU about the owner of the documents 
-	- need another model for file complaints. similar implementation to file invitation. 
+  - need another model for file complaints. similar implementation to file invitation. 
 
 - as the owner of a document deal with complaints filed by other OUs (remove some OUs who were invited before) 
 
@@ -91,19 +98,19 @@ constraints:
 - there is only ONE current version for any document
   - **Done** (David)
 - for simplicity there is only one word for each line in all documents 
-  - Todo(David): Need to somehow validate entry with the clean() function here too.
+  - Todo (David): Need to somehow validate entry with the clean() function here too.
 - only the editing command(s) are saved for older versions with three possible actions: 
   - add, 
   - delete
   - update. 
-    - Todo(David): Check the python difflib documentation for update syntax.
+    - Todo (David): Check the python difflib documentation for update syntax.
 - For instance, if the file doc_1.txt contains one line "the", and doc_2.txt contains three lines "welcome \n the \n world\n", then your system only saves doc_2.txt, doc_1.history saves the commands "delete 1; delete 3" which changes doc_2.txt into doc_1.txt. Your system generates the history command file based on the difference. 
 - the retrieval of older versions of documents should be done by your system based on the current version and possibly a sequence of history files. 
   - **Done** (David)
 - any word(s) belonging to the taboo list (maintained by SU) are replaced by UNK by the system, and the one who use these words are warned automatically, s/he should update the document next time s/he log in the system as the first job (all other activities are blocked) 
-  - Todo(David): need to overwrite ModelForm `clean()` method for validation. Also need a table of Taboo words.
+  - Todo (David): need to overwrite ModelForm `clean()` method for validation. Also need a table of Taboo words.
 - a creative feature worthy of 15% is required for each system, one possible feature could be allowing more than word per line, or speech-based document updating is allowed, or some machine learning features to render this system adaptable/evolving by itself thru usage. 
-  - Todo(David): More than one word per line needs further testing. Differences just trail off the screen and individual words are not accounted for. 
+  - Todo (David): More than one word per line needs further testing. Differences just trail off the screen and individual words are not accounted for. 
 - a GUI is required
   - **Done** (David)
 - different users should have their own page populated by his/her picture and 3 most recent documents. For a brand-new user, the 3 most popular (most read and/or updated) files in the system are shown. 
