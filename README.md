@@ -56,6 +56,7 @@ After you've set up the python virtual environment, install the necessary depend
 ```
 pip install django-reversion
 pip install django-reversion-compare
+pip install admin_view_permission
 ```
 
 # NoteShare
