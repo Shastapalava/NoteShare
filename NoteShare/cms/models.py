@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
+from django.conf import settings
 
 class CustomUser(AbstractUser):
     is_currently_an_OU = models.BooleanField(default=False)
@@ -33,14 +35,19 @@ class Post(models.Model):
 		return self.title
 
 class Complaint(models.Model):
-    complainAbout = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complainee')
-    commplainFrom = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complainant',blank=True, null=True)
-    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='postComplaint',blank=True, null=True)
-    explanation = models.TextField()
+	#User = models.ForeignKey(User)
+	complainAbout = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complainee')
+	commplainFrom = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complainant',blank=True, null=True)
+	#commplainFrom = models.ForeignKey(editable = False)
+	post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='postComplaint',blank=True, null=True)
+	explanation = models.TextField()
+	def save(self):
+			commplainFrom = self.user
+
 
 class Invitation(models.Model):
 	inviteTo = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='inviteTo')
-	inviteFrom = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='inviteFrom',blank=True, null=True)
+	inviteFrom = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='inviteFrom',blank=True, null=True)
 	isAccepted = models.BooleanField(default=False)
 	isApplication = models.BooleanField(default=False) 
 	post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name = 'postInvite')

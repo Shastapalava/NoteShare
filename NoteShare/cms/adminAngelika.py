@@ -4,12 +4,21 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 from .models import *
-from .forms import PostAdminForm, CustomUserCreationForm, CustomUserChangeForm
+
 
 @admin.register(Complaint)
 class ComplaintsAdmin(admin.ModelAdmin):
 	list_display = ('complainAbout', 'commplainFrom','post','explanation')
 	raw_id_fields = ('complainAbout', 'commplainFrom','post')
+	def get_quesryset(self, request):
+		qs = super(ComplaintsAdmin,self).get_queryset(request)
+		if request.user.is_superuser:
+			return qs
+		else: 
+			return qs.filter(complainAbout = request.user)
+	
+
+
 	
 
 @admin.register(Invitation)
@@ -22,7 +31,8 @@ class InvitationAdmin(admin.ModelAdmin):
     	if request.user.is_superuser:
     		return qs
     	else:
-    			return qs.filter(inviteTo = request.user)
+    		return qs.filter(inviteTo = request.user)
+
 
 
 # @admin.register(LockPost)
