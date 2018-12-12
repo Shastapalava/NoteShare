@@ -4,8 +4,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 
-
-
 from .models import *
 from .forms import PostAdminForm, CustomUserCreationForm, CustomUserChangeForm
 
@@ -22,15 +20,15 @@ class PostAdmin(CompareVersionAdmin):
 	ordering = ('status','publish')
 	form = PostAdminForm
 
-@admin.register(ComplainOU)
-class ComplainOUAdmin(admin.ModelAdmin):
-	list_display = ('OUName', 'reason')
-	#raw_id_fields = ('author',)
+@admin.register(Complaints)
+class ComplaintsAdmin(admin.ModelAdmin):
+	list_display = ('complainAbout', 'commplainFrom','post','explanation')
+	raw_id_fields = ('complainAbout', 'commplainFrom','post')
 	
 @admin.register(Invitation)
 class Invitation(admin.ModelAdmin):
-    list_display = ('OUName', 'on_doc')
-    raw_id_fields = ('OUName','on_doc')
+    list_display = ('inviteTo', 'inviteFrom','isApplication','post')
+    raw_id_fields = ('inviteTo', 'inviteFrom','post')
     #list_editable = ('OUName','on_doc')
 
 @admin.register(CustomUser)
@@ -38,11 +36,11 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
-    list_display = ['email', 'username','isOU','is_superuser']
+    list_display = ['email', 'username','isOU','pendingOU','is_superuser']
 	
 @admin.register(TabooList)
 class TabooListAdmin(admin.ModelAdmin):
-    list_display = ('tWord',)
+    list_display = ('tabooWord',)
     # raw_id_fields = ('tWord',)
 
 # @admin.register(LockPost)

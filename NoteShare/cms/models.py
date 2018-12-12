@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     isOU = models.BooleanField(default=False)
+    pendingOU = models.BooleanField(default=False)
 
 class Post(models.Model):
 	STATUS_CHOICES = (
@@ -31,17 +32,21 @@ class Post(models.Model):
 	def __str__(self):
 		return self.title
 
-class ComplainOU(models.Model):
-    OUName = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complaint')
-    reason = models.TextField()
+class Complaints(models.Model):
+    complainAbout = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complainee')
+    commplainFrom = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='complainant',blank=True, null=True,default=None)
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='postComplaint',blank=True, null=True)
+    explanation = models.TextField()
 
 class Invitation(models.Model):
-    OUName = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='ivitation_to')
-    on_doc = models.ForeignKey(Post,on_delete=models.CASCADE,related_name = 'on_documnent')
-     #invite_id = models.AutoField(primary_key=True)  
+    inviteTo = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='inviteTo')
+    inviteFrom = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='inviteFrom',blank=True, null=True)
+    isApplication = models.BooleanField(default=False) 
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name = 'postInvite')
+    #invite_id = models.AutoField(primary_key=True)  
 	
 class TabooList(models.Model):
-	tWord = models.CharField(max_length=20)
+	tabooWord = models.CharField(max_length=20)
 	isPending = models.BooleanField(default=True)
 
 
