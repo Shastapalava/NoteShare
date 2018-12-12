@@ -2,7 +2,21 @@
 **/.idea
 *.sqlite3
 ./NoteShare/db.sqlite3
-
+bin/
+NoteShare/NoteShare/bin/
+NoteShare/NoteShare/bin/activate
+NoteShare/NoteShare/bin/activate.csh
+NoteShare/NoteShare/bin/activate.fish
+NoteShare/NoteShare/bin/activate.ps1
+NoteShare/NoteShare/bin/easy_install
+NoteShare/NoteShare/bin/pip
+NoteShare/NoteShare/bin/pip3
+NoteShare/NoteShare/bin/python-config
+NoteShare/NoteShare/bin/python3
+NoteShare/NoteShare/bin/python3.6
+NoteShare/NoteShare/bin/wheel
+NoteShare/lib/python3.7/site-packages/setuptools/build_meta.py
+NoteShare/lib/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

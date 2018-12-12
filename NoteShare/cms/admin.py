@@ -3,7 +3,6 @@ from reversion_compare.admin import CompareVersionAdmin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
-
 from .models import *
 from .forms import PostAdminForm, CustomUserCreationForm, CustomUserChangeForm
 
