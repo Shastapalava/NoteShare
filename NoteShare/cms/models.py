@@ -39,11 +39,12 @@ class Complaint(models.Model):
     explanation = models.TextField()
 
 class Invitation(models.Model):
-    inviteTo = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='inviteTo')
-    inviteFrom = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='inviteFrom',blank=True, null=True)
-    isApplication = models.BooleanField(default=False) 
-    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name = 'postInvite')
-    #invite_id = models.AutoField(primary_key=True)  
+	inviteTo = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='inviteTo')
+	inviteFrom = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='inviteFrom',blank=True, null=True)
+	isAccepted = models.BooleanField(default=False)
+	isApplication = models.BooleanField(default=False) 
+	post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name = 'postInvite')
+	#invite_id = models.AutoField(primary_key=True)  
 	
 class Taboo(models.Model):
 	tabooWord = models.CharField(max_length=20)

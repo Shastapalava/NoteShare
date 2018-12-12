@@ -39,7 +39,7 @@ class EventAdmin(admin.ModelAdmin):
 
 	def get_queryset(self,request):
 	# first get the default queryset for the class
-	qs = super(EventAdmin,self).queryset(request)
+	qs = super(EventAdmin,self).get_queryset(request)
 
 	# now, if the user is super user (attribute in ), then return all entries, otherwise return all entries where the user is on that team
 	if request.user.is_superuser:
