@@ -47,13 +47,3 @@ class PostAdmin(CompareVersionAdmin):
 			result_list = author_list | permissions_list
 			return result_list
 		return author_list
-		
-
-
-
-
-
-
-
-
-
