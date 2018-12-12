@@ -17,6 +17,12 @@ class InvitationAdmin(admin.ModelAdmin):
     list_display = ('inviteTo', 'inviteFrom','isApplication','post', 'isAccepted')
     raw_id_fields = ('inviteTo', 'inviteFrom','post')
     #list_editable = ('OUName','on_doc')
+    def get_queryset(self, request):
+    	qs = super(InvitationAdmin,self).get_queryset(request)
+    	if request.user.is_superuser:
+    		return qs
+    	else:
+    			return qs.filter(inviteTo = request.user)
 
 
 # @admin.register(LockPost)
