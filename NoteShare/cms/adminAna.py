@@ -49,6 +49,17 @@ class CustomUserAdmin(UserAdmin):
         (('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
 
+    #below code hides Taboo words from non-SU's
+    def get_queryset(self,request):
+        # first get the default queryset for the class
+        qs = super(CustomUserAdmin,self).get_queryset(request)
+        # now, if the user is super user (attribute in ), then return all entries, otherwise return nothing
+        if request.user.is_superuser:
+            return qs
+        return CustomUser.objects.filter(username=request.user.get_username())
+
+            
+
 # Re-register UserAdmin
 admin.site.unregister(CustomUser)
 admin.site.register(CustomUser, CustomUserAdmin)
