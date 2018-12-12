@@ -1,14 +1,62 @@
-# Battle Plan:
+# Noteshare Install Instructions
 
-1. Posts
-2. Complaints
-	- add permissions to document search in raw_id_fields for complaints
-	- add feature to complain about specific document edit by accessing django-reversion table
-3. Taboo
-	- make "pending status" editable from changelist
-4. Membership (assigning SU,OU,GU)
-5. Permissions (restricting access based on Membership)
+First, clone this repositor and install `virtualenv` which creates a separate environment for your python code. `virtualenv`  is a program that allows you to run specific versions of the python libraries you import. More info here a quick summary can be found in this [stackoverflow post](https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe), and more info can be found in the [virtualenv documentation](https://virtualenv.pypa.io/en/latest/userguide/). 
 
+```shell
+pip install virtualenv
+```
+
+Then, navigate to the root folder of this github repo (the directory where the readme is) and run this command.
+
+```
+virtualenv NoteShare
+```
+
+After that, tell virtualenv to use your latest version of python.
+
+```
+virtualenv NoteShare -p `which python`
+```
+Then navigate into the `NoteShare` directory with 
+
+```
+cd NoteShare
+```
+
+Next, activate your virtual environment
+
+```
+source ./bin/activate
+```
+After all this, you can finally install django with 
+
+```
+pip	install	Django==2.0.5
+```
+
+And you can check if everything has been installed correctly by executing the following command and observing the output. 
+
+```
+pip list
+```
+
+If you want to quit `virtualenv`, type 
+
+```
+deactivate
+```
+To start the virtual environment after deactivating, simply activate it once again 
+
+```
+source ./bin/activate
+```
+
+# Dependencies
+After you've set up the python virtual environment, install the necessary dependencies with
+```
+pip install django-reversion
+pip install django-reversion-compare
+```
 
 # NoteShare
 
@@ -20,7 +68,7 @@ This application could be especially helpful in schools where teachers have limi
 
 We want to develop a document sharing system such that group members can collaborate on the same documents without causing inconsistencies. There are three types of users in this system: Super User (SU), Ordinary User (OU) and Guest (GU). 
 
-## Specification + Implementation Notes (David Hadaller)
+## Specification + Implementation Notes
 unless otherwise noted, I'm drawing from [this page](https://docs.djangoproject.com/en/2.1/ref/contrib/admin/) in the django documentation.
 
 ### SU: 
@@ -48,13 +96,12 @@ unless otherwise noted, I'm drawing from [this page](https://docs.djangoproject.
 - creator of a document can invite other OUs to update it
   - **DONE** (Angelika) create invitations model, with foreign key relationship to documents/posts
   - Todo (David) way to add search to an invitations field AND display a list of people invited on the **add or change** page.
-    ***Done*** (but still needs to be tested with multiple users)
+    **DONE** (but still needs to be tested with multiple users)
 - creator of a document can decide if the document is 
   - open to the public (can be seen by everyone)
   - restricted (can only be viewed as read-only by GU's and edited by OU's), 
   - shared (viewed/edited by OU's who are invited) and private  
   	- add open/restricted/shared option to posts model `privacy = models.CharField(max_length=10,choices=PRIVACY_CHOICES,default='private')` where `PRIVACY_CHOICES` is a list of tuples similar to `STATUS_CHOICES` already in `models.py`
-  	- **FIND** how to restrict user access when looking at list of notes/posts. This has to do with "object-level permissions", so [this](https://p.ota.to/blog/pushing-the-boundaries-of-the-django-admin/) may help.
 
 - an OU can accept or deny the invitation(s) placed by other OUs for their documents 
   - need an invitation requests model/table that has as columns:
@@ -70,32 +117,29 @@ unless otherwise noted, I'm drawing from [this page](https://docs.djangoproject.
 - update a successfully locked document, and then assign a unique version sequence number and remember who and when makes the updates 
 
 - unlock a shared document locked by him/herself 
-
+	**DONE**~(Angelika)
 - file complaints to the owner of a document about other OUs'updates or to the SU about the owner of the documents 
   - need another model for file complaints. similar implementation to file invitation. 
-
+	- **DONE** (Hua)
 - as the owner of a document deal with complaints filed by other OUs (remove some OUs who were invited before) 
-
+	- **DONE** (Hua)
 
 - unlock the locked documents s/he owns that is being updated by others 
+	- **DONE** (Angelika) posts need to be filtered.
 
 - search own file(s) based on (partial) keyword
 	- **DONE** (David)
 
 - search information about other OUs based on name and/or interests. 
-	- **FIND** an option to change this on **change list** page 
+	- **DONE** (David) seach based on name.  
 - have all privileges for GUs 
 
 ### GU: 
 - read open document(s), retrieve old version(s) of open document(s) and complains about those documents.
-	- for general users, since the default **add or change** page does not allow for read only viewing, we need to extend the **add or change** template similar to how [this tutorial](https://medium.com/@hakibenita/how-to-turn-django-admin-into-a-lightweight-dashboard-a0e0bbf609ad) changes the `change_list` template.
-- send suggestions to SU about taboo words
-	- **FIND** out how to retain have some editable fields in the template.  
+	- **DONE**: (David)
 
 - apply to be an OU that is to be confirmed or rejected by SU, in the application his/her name, technical interests should be submitted.
-	- **FIND** how user have access to only his row of data. Refer to articles on object-level permissions in django.
-	- a link on the **admin index** page should take the user to a **change list** page where this query set (user=currently logged on) should be visisble. User can then click on the entry and be taken to a **add or change** page.
-
+	- **DONE** (David), but without techical interests
 constraints: 
 
 - there is only ONE current version for any document
@@ -119,7 +163,7 @@ constraints:
 - different users should have their own page populated by his/her picture and 3 most recent documents. For a brand-new user, the 3 most popular (most read and/or updated) files in the system are shown. 
 
 
-## Original Specification
+# Original Specification
 
 SU: 
 
@@ -193,62 +237,4 @@ constraints:
 
 
 
-# Setting up `virtualenv` with NoteShare
 
-First, install `virtualenv` which creates a separate environment for your python code. `virtualenv`  is a program that allows you to run specific versions of the python libraries you import. More info here a quick summary can be found in this [stackoverflow post](https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe), and more info can be found in the [virtualenv documentation](https://virtualenv.pypa.io/en/latest/userguide/). 
-
-```shell
-pip install virtualenv
-```
-
-Then, navigate to the root folder of this github repo (the directory where the readme is) and run this command.
-
-```
-virtualenv NoteShare
-```
-
-After that, tell virtualenv to use your latest version of python.
-
-```
-virtualenv NoteShare -p `which python`
-```
-Then navigate into the `NoteShare` directory with 
-
-```
-cd NoteShare
-```
-
-Next, activate your virtual environment
-
-```
-source ./bin/activate
-```
-After all this, you can finally install django with 
-
-```
-pip	install	Django==2.0.5
-```
-
-And you can check if everything has been installed correctly by executing the following command and observing the output. 
-
-```
-pip list
-```
-
-If you want to quit `virtualenv`, type 
-
-```
-deactivate
-```
-To start the virtual environment after deactivating, simply activate it once again 
-
-```
-source ./bin/activate
-```
-
-# Dependencies
-After you've set up the python virtual environment, install the necessary dependencies with
-```
-pip install django-reversion
-pip install django-reversion-compare
-```
