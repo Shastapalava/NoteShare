@@ -110,11 +110,9 @@ unless otherwise noted, I'm drawing from [this page](https://docs.djangoproject.
   	- foreign key: userFROM, the user the invitation was sent from
   	- slug, the slug (unique id) of the document in question
 
-- lock a shared document for updating, only one OU can lock a document successfully, the system should indicate which OU is updating the document 
-  - create a view method that overrides the link on the **change list** page that leads to the **add or change** page such that if another user in the database is editing that given file, the user attempting to access it is rerouted to an error or "please wait" page. 
-  - see [customizing admin templates](https://docs.djangoproject.com/en/2.1/intro/tutorial07/#customizing-your-project-s-templates)
 
-- update a successfully locked document, and then assign a unique version sequence number and remember who and when makes the updates 
+- lock a shared document for updating, only one OU can lock a document successfully, the system should indicate which OU is updating the document **DIDN'T DO"** due to conflict with ModelAdmin structure. 
+- update a successfully locked document, and then assign a unique version sequence number and remember who and when makes the updates **DIDN'T DO"** due to conflict with ModelAdmin structure.
 
 - unlock a shared document locked by him/herself 
 	**DONE**~(Angelika)
@@ -155,7 +153,7 @@ constraints:
 - the retrieval of older versions of documents should be done by your system based on the current version and possibly a sequence of history files. 
   - **Done** (David)
 - any word(s) belonging to the taboo list (maintained by SU) are replaced by UNK by the system, and the one who use these words are warned automatically, s/he should update the document next time s/he log in the system as the first job (all other activities are blocked) 
-  - Todo (David): need to overwrite ModelForm `clean()` method for validation. Also need a table of Taboo words.
+  - **Didn't Do** (David): need to overwrite ModelForm `clean()` method for validation. Also need a table of Taboo words.
 - a creative feature worthy of 15% is required for each system, one possible feature could be allowing more than word per line, or speech-based document updating is allowed, or some machine learning features to render this system adaptable/evolving by itself thru usage. 
   - Todo (David): More than one word per line needs further testing. Differences just trail off the screen and individual words are not accounted for. 
 - a GUI is required
