@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 from .models import *
-
+from .forms import PostAdminForm
 
 @admin.register(Complaint)
 class ComplaintsAdmin(admin.ModelAdmin):

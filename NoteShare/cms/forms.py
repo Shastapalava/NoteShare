@@ -15,15 +15,28 @@ class PostAdminForm(forms.ModelForm):
         model = Post
         fields = ('title','author', 'body',)
 
-# Custom User Stuff
-class CustomUserCreationForm(UserCreationForm):
+# # Custom User Stuff
+# class CustomUserCreationForm(UserCreationForm):
 
-    class Meta(UserCreationForm):
-        model = CustomUser
-        fields = ('username', 'email')
+#     is_OU = forms.BooleanField()
+#     pend_OU = forms.BooleanField()
+#     class Meta:
+#         model = User
+#         fields = ('username', 'first_name' , 'last_name', 'is_OU', 'pend_OU')
+#     def save(self, commit=True):
+#         CustomUser = super(UserCreateForm, self).save(commit=False)
+#         CustomUser.is_currently_an_OU = self.cleaned_data["is_OU"]
+#         CustomUser.pending_OU = self.cleaned_data["pend_OU"]
+#         if commit:
+#             CustomUser.save()
+#         return CustomUser
 
-class CustomUserChangeForm(UserChangeForm):
+#     # class Meta(UserCreationForm):
+#     #     model = CustomUser
+#     #     fields = ('username', 'email', 'is_currently_an_OU')
 
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'email')
+# class CustomUserChangeForm(UserChangeForm):
+
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username', 'email', 'is_currently_an_OU')
