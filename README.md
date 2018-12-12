@@ -3,6 +3,7 @@
 1. Posts
 2. Complaints
 3. Taboo
+	- make "pending status" editable from changelist
 4. Membership (assigning SU,OU,GU)
 5. Permissions (restricting access based on Membership)
 
@@ -26,7 +27,7 @@ unless otherwise noted, I'm drawing from [this page](https://docs.djangoproject.
   - Todo(David) add the IsOU option to the user change page also to the add user page.
 
 - maintain a list of "taboo" words 
-  - Todo (Ana) create a new model for taboo words, then [register](https://docs.djangoproject.com/en/2.1/ref/contrib/admin/#the-register-decorator) the model in `admin.py`. A link to the taboo list will appear on the **admin index** page, while the list itself will appear in the **change list** page.
+  - **DONE** (Ana) create a new model for taboo words, then [register](https://docs.djangoproject.com/en/2.1/ref/contrib/admin/#the-register-decorator) the model in `admin.py`. A link to the taboo list will appear on the **admin index** page, while the list itself will appear in the **change list** page.
 
 - unlock any locked document 
   - **DONE** (Angelika) a locked or unlocked column/attribute to the posts/notes model. This should appear automatically on the **add or change** django page.
