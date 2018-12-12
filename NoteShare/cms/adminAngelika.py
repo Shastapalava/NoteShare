@@ -16,10 +16,6 @@ class ComplaintsAdmin(admin.ModelAdmin):
 			return qs
 		else: 
 			return qs.filter(complainAbout = request.user)
-	
-
-
-	
 
 @admin.register(Invitation)
 class InvitationAdmin(admin.ModelAdmin):
@@ -32,6 +28,8 @@ class InvitationAdmin(admin.ModelAdmin):
     		return qs
     	else:
     		return qs.filter(inviteTo = request.user)
+
+
 
 
 
