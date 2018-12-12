@@ -4,7 +4,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 
-from .models import Post,Complain_OU, Invitation, CustomUser
+
+
+from .models import *
 from .forms import PostAdminForm, CustomUserCreationForm, CustomUserChangeForm
 
 #admin.site.register(Post) #this displays all class elements of Post to be edited. Equivalent to putting every attribute in list_display
@@ -20,8 +22,8 @@ class PostAdmin(CompareVersionAdmin):
 	ordering = ('status','publish')
 	form = PostAdminForm
 
-@admin.register(Complain_OU)
-class Complain_OUAdmin(admin.ModelAdmin):
+@admin.register(ComplainOU)
+class ComplainOUAdmin(admin.ModelAdmin):
 	list_display = ('OU_name', 'reason')
 	#raw_id_fields = ('author',)
 	
@@ -36,8 +38,17 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
-    list_display = ['email', 'username','is_OU','is_superuser']
+    list_display = ['email', 'username','isOU','is_superuser']
+	
+@admin.register(TabooList)
+class TabooListAdmin(admin.ModelAdmin):
+    list_display = ('tWord',)
+    # raw_id_fields = ('tWord',)
 
+@admin.register(PendingTaboo)
+class PendingTabooAdmin(admin.ModelAdmin):
+    list_display = ('tSubmission',)
+    # raw_id_fields = ('tSubmission',)
 
 # @admin.register(LockPost)
 # class LockPost(admin.ModelAdmin)
