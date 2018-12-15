@@ -13,30 +13,20 @@ class PostAdminForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title','author', 'body',)
-
-# # Custom User Stuff
-# class CustomUserCreationForm(UserCreationForm):
-
-#     is_OU = forms.BooleanField()
-#     pend_OU = forms.BooleanField()
-#     class Meta:
-#         model = User
-#         fields = ('username', 'first_name' , 'last_name', 'is_OU', 'pend_OU')
-#     def save(self, commit=True):
-#         CustomUser = super(UserCreateForm, self).save(commit=False)
-#         CustomUser.is_currently_an_OU = self.cleaned_data["is_OU"]
-#         CustomUser.pending_OU = self.cleaned_data["pend_OU"]
-#         if commit:
-#             CustomUser.save()
-#         return CustomUser
-
-#     # class Meta(UserCreationForm):
-#     #     model = CustomUser
-#     #     fields = ('username', 'email', 'is_currently_an_OU')
-
-# class CustomUserChangeForm(UserChangeForm):
-
-#     class Meta:
-#         model = CustomUser
-#         fields = ('username', 'email', 'is_currently_an_OU')
+        fields = ('title','author', 'body', 'locked', 'status')
+        
+        ''' Below is our attempt at censoring out the taboo words from the post - 
+         it failed since Django makes sure that user-input forms are immutable probably for user integrity 
+         For future improvements, we can add triggers to the Post database itself and censore that way'''
+        # tabooSet = set(Taboo.objects.filter(isPending=False).values_list('tabooWord',flat=True))
+        # bodyList = self.cleaned_data.get('body').strip()
+        # for i in (len(bodyList)):
+        #     if bodyList[i] in tabooSet:
+        #         bodyList[i] = "UNK"
+        # bodyString = ' '.join(bodyList)
+        # self.body = bodyString
+        
+        # if commit:
+        #     PostAdminForm.save(update_fields=['body'])
+        
+        # return bodyString

@@ -76,6 +76,7 @@ unless otherwise noted, I'm drawing from [this page](https://docs.djangoproject.
 
 - update membership 
   - Todo(David) add the IsOU option to the user change page also to the add user page.
+  - **DONE** (Ana) SU can select isOU and pendingOU at the user creaation and user change forms.
 
 - maintain a list of "taboo" words 
   - **DONE** (Ana) create a new model for taboo words, then [register](https://docs.djangoproject.com/en/2.1/ref/contrib/admin/#the-register-decorator) the model in `admin.py`. A link to the taboo list will appear on the **admin index** page, while the list itself will appear in the **change list** page.
@@ -156,7 +157,7 @@ constraints:
 - any word(s) belonging to the taboo list (maintained by SU) are replaced by UNK by the system, and the one who use these words are warned automatically, s/he should update the document next time s/he log in the system as the first job (all other activities are blocked) 
   - **Didn't Do** (David and Ana): Django admin forms are immutable and we currently have not found a work around that to replace contents of the body field of the post
 ```diff
-- You can find commented out code for the save() function in /NoteShare/cms/forms.py to see our attempts at changing the user post form before saving.
+- You can find commented out code for the save() function in /NoteShare/cms/forms.py to see our attempts at censoring the user post form.
 ```
   
 

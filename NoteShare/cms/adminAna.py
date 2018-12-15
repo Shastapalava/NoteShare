@@ -1,5 +1,5 @@
 from django.contrib import admin
-from reversion_compare.admin import CompareVersionAdmin
+# from reversion_compare.admin import CompareVersionAdmin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
