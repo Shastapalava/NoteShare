@@ -105,6 +105,7 @@ unless otherwise noted, I'm drawing from [this page](https://docs.djangoproject.
   	- add open/restricted/shared option to posts model `privacy = models.CharField(max_length=10,choices=PRIVACY_CHOICES,default='private')` where `PRIVACY_CHOICES` is a list of tuples similar to `STATUS_CHOICES` already in `models.py`
 
 - an OU can accept or deny the invitation(s) placed by other OUs for their documents 
+  - **DONE** (Ana) OU only sees their documents and the ones they have been invited to (and accepted the invitation)
   - need an invitation requests model/table that has as columns:
   	- foreign key: userTO, the user the inviation is sent to
   	- foreign key: userFROM, the user the invitation was sent from
@@ -153,7 +154,11 @@ constraints:
 - the retrieval of older versions of documents should be done by your system based on the current version and possibly a sequence of history files. 
   - **Done** (David)
 - any word(s) belonging to the taboo list (maintained by SU) are replaced by UNK by the system, and the one who use these words are warned automatically, s/he should update the document next time s/he log in the system as the first job (all other activities are blocked) 
-  - **Didn't Do** (David): Django admin forms are immutable and we currently have not found a work around that to replace contents of the body field of the post
+  - **Didn't Do** (David and Ana): Django admin forms are immutable and we currently have not found a work around that to replace contents of the body field of the post
+```diff
+- You can find commented out code for the save() function in /NoteShare/cms/forms.py to see our attempts at changing the user post form before saving.
+```
+  
 
   - ***Done*** (David): More than one word per line needs further testing. Differences just trail off the screen and individual words are not accounted for. 
 - a GUI is required
